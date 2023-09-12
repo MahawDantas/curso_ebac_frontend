@@ -9,7 +9,7 @@ form.addEventListener("submit", function(evento) {
     const mensagemSucesso = `O número: <b>${numeroB}</b> é maior que o número: <b>${numeroA}</b>`;
 
     function numeroBMaior(numeroA, numeroB) {
-        if (Math.max(numeroA, numeroB), numeroB > numeroA) {
+        if (numeroB > numeroA) {
             return numeroB;
         }
     }
