@@ -1,5 +1,4 @@
 const form = document.getElementById("form-comparador");
-let numeroBMaiorr = true;
 
 form.addEventListener("submit", function(evento) {
     evento.preventDefault();
@@ -7,36 +6,24 @@ form.addEventListener("submit", function(evento) {
     const numeroA = document.getElementById("numero-a").value;
     const numeroB = document.getElementById("numero-b").value;
     const mensagemSucesso = `O número: <b>${numeroB}</b> é maior que o número: <b>${numeroA}</b>`;
+    const mensagemError = `O número: <b>${numeroB}</b> é menor que o número: <b>${numeroA}</b>`;
 
-    function numeroBMaior(numeroA, numeroB) {
-        if (numeroB > numeroA) {
-            return numeroB;
-        }
+    if (numeroB < numeroA) {
+        const containerMensagemError = document.querySelector(".error-message");
+        containerMensagemError.innerHTML = mensagemError;
+        containerMensagemError.style.display = "block";
+        containerMensagemSucesso.style.display = "none";
+
+        document.getElementById("numero-a").value = "";
+        document.getElementById("numero-b").value = "";
     }
-
-    numeroBMaiorr = numeroBMaior(numeroA, numeroB)
-    if (numeroBMaiorr) {
+    
+    if (numeroB > numeroA) {
         const containerMensagemSucesso = document.querySelector(".success-message");
         containerMensagemSucesso.innerHTML = mensagemSucesso;
         containerMensagemSucesso.style.display = "block";
+        containerMensagemError.style.display = "none";
 
-        numeroA.value = "";
-        numeroB.value = "";
-
-    } else {
-        numeroB.style.border = "1px solid red";
-        document.querySelector(".error-message").style.display = "block";
-    }
-})
-
-numeroB.addEventListener("keyup", function(evento) {
-    console.log(evento.target.value);
-
-    if (!numeroBMaiorr) {
-        numeroB.classList.add("error");
-        document.querySelector(".error-message").style.display = "block";
-    } else {
-        numeroB.classList.remove("error");
-        document.querySelector(".error-message").style.display = "none";
-    }
-});
+        document.getElementById("numero-a").value = "";
+        document.getElementById("numero-b").value = "";
+}})
